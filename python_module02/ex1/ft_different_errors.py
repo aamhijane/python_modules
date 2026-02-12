@@ -1,19 +1,24 @@
-#!/usr/bin/env python3
-
 def garden_operations(test_value: str) -> None:
-    """Simulates various garden-related failures to trigger specific exceptions."""
+    """
+    Simulates various garden-related failures
+    to trigger specific exceptions.
+    """
     if test_value == "value":
-        value = int("not_number")
+        int("not_number")
     elif test_value == "zero":
-        value = 10 / 0
+        10 / 0
     elif test_value == "file":
-        file = open("missing.txt", "r")
+        open("missing.txt", "r")
     elif test_value == "key":
         person = {}
         print(person["_plant"])
 
+
 def test_error_types() -> None:
-    """Executes a series of tests to demonstrate catching specific Python errors."""
+    """
+    Executes a series of tests to demonstrate
+    catching specific Python errors.
+    """
 
     print("=== Garden Error Types Demo ===")
 
@@ -21,7 +26,7 @@ def test_error_types() -> None:
     print("Testing ValueError...")
     try:
         garden_operations("value")
-    except ValueError as e:
+    except ValueError:
         print("Caught ValueError: invalid literal for int()")
 
     print()
@@ -35,14 +40,14 @@ def test_error_types() -> None:
     print("Testing FileNotFoundError...")
     try:
         garden_operations("file")
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         print("Caught FileNotFoundError: No such file 'missing.txt'")
 
     print()
     print("Testing KeyError...")
     try:
         garden_operations("key")
-    except KeyError as e:
+    except KeyError:
         print("Caught KeyError: 'missing\\_plant'")
 
     print()

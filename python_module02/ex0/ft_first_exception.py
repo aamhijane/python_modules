@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
-
 def check_temperature(temp_str: str) -> int:
     """Takes a string input from the user and handle exceptions."""
 
     try:
         temp: int = int(temp_str)
         if temp < 0:
-            raise ValueError(f"Error: {temp_str}°C is too cold for plants (min 0°C)")
+            raise ValueError(
+                f"Error: {temp_str}°C is too cold for plants (min 0°C)")
         elif temp > 40:
-            raise ValueError(f"Error: {temp_str}°C is too hot for plants (max 40°C)")
+            raise ValueError(
+                f"Error: {temp_str}°C is too hot for plants (max 40°C)")
         print(f"Temperature {temp}°C is perfect for plants!")
         return temp
     except ValueError as err:
@@ -26,9 +26,7 @@ def test_temperature_input() -> None:
         print()
 
 
-if  __name__ == "__main__":
+if __name__ == "__main__":
     print("=== Garden Temperature Checker ===\n")
-    
     test_temperature_input()
-
     print("All tests completed - program didn't crash!")
