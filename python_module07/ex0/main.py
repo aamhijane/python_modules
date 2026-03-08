@@ -12,23 +12,21 @@ def main() -> None:
     state = {'available_mana': 6}
     
     # Info
-    print(dragon.get_card_info())
-    print()
+    print(f"{dragon.get_card_info()}\n")
 
     # Play
-    print(f"Playing Fire Dragon with {state['available_mana']} mana available:")
-    is_playable = state['available_mana'] >= dragon.cost
-    print(f"Playable: {is_playable}")
+    print(f"Playing {dragon.name} with {state['available_mana']} mana available:")
+    print(f"Playable: {dragon.is_playable(state['available_mana'])}")
     print(f"Play result: {dragon.play(state)}")
     
     # Attack
-    print("\nFire Dragon attacks Goblin Warrior:")
+    print(f"\n{dragon.name} attacks {goblin.name}")
     print(f"Attack result: {dragon.attack_target(goblin)}")
 
+    # Mana Inavailable
     state = {'available_mana': 3}
     print("\nTesting insufficient mana (3 available):")
-    is_playable = state['available_mana'] >= dragon.cost
-    print(f"Playable: {is_playable}")
+    print(f"Playable: {dragon.is_playable(state['available_mana'])}")
 
     print("\nAbstract pattern successfully demonstrated!")
 
