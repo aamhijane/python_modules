@@ -1,18 +1,11 @@
-from typing import List
-import random
-
+from typing import List, Dict
 from ex0.Card import Card
-
-
-class EmptyDeckError(Exception):
-    """Exception raised when attempting to draw from an empty deck."""
-    def __init__(self, message="Cannot draw from an empty deck"):
-        self.message = message
-        super().__init__(self.message)
+import random
 
 
 class Deck:
-    def __init__(self) -> None:
+
+    def __init__(self):
         self.cards: List[Card] = []
 
     def add_card(self, card: Card) -> None:
@@ -26,43 +19,29 @@ class Deck:
         return False
 
     def shuffle(self) -> None:
-        random.shuffle(self.cards)
+        if self.cards:
+            random.shuffle(self.cards)
 
     def draw_card(self) -> Card:
-        """
-        Removes and returns the top card from the deck.
-        """
-        if len(self.cards) == 0:
-            raise EmptyDeckError("The deck is out of cards!")
-            
-        return self.cards.pop()
+        if self.cards:
+            return self.cards.pop()
 
     def get_deck_stats(self) -> dict:
-        # Guard against empty list (Resilient Design)
-        if not self.cards:
-            return {'total_cards': 0, 'avg_cost': 0.0}
+        deck_stats: Dict[str, int | float] = {}
 
-        # Initialize fixed keys first
-        summary = {'total_cards': 0}
-        total_cost = 0
-        
+        total_cost: int = 0
+        total_cards: int = len(self.cards)
+        deck_stats["total_cards"] = total_cards
+
         for card in self.cards:
-            # Direct access - assumes data structure is Hardened and keys exist
-            c_type = card.type.lower()
-            c_cost = card.cost
-            
-            # Update global metrics
-            summary['total_cards'] += 1
-            total_cost += c_cost
-            
-            # Dynamic category logic without .get()
-            category_key = f"{c_type}s"
-            if category_key in summary:
-                summary[category_key] += 1
+            total_cost += card.cost
+            card_type: str = card.type.lower() + "s"
+            if card_type in deck_stats:
+                deck_stats[card_type] += 1
             else:
-                summary[category_key] = 1
+                deck_stats[card_type] = 1
 
-        # Calculate average cost
-        summary['avg_cost'] = round(total_cost / summary['total_cards'], 2)
-        
-        return summary
+        avg_cost: int | float = round(total_cost / total_cards)
+        deck_stats["avg_cost"] = round(avg_cost, 1) if total_cards > 0 else 0
+
+        return deck_stats
