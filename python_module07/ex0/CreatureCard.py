@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, CardType
 
 
 class CreatureCard(Card):
@@ -14,7 +14,7 @@ class CreatureCard(Card):
         super().__init__(name, cost, rarity)
         self.attack: int = attack
         self.health: int = health
-        self.type: str = "Creature"
+        self.type: str = CardType.CREATURE.value
 
     def play(self, game_state: dict) -> dict:
         return {

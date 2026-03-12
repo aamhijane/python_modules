@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, CardType
 from ex2.Combatable import Combatable
 from ex4.Rankable import Rankable
 
@@ -20,6 +20,7 @@ class TournamentCard(Card, Combatable, Rankable):
         self.rating = base_rating
         self.wins = 0
         self.losses = 0
+        self.type = CardType.TOURNAMENT.value
 
     # --- Card methods ---
     def play(self, game_state: dict) -> dict:
@@ -37,7 +38,7 @@ class TournamentCard(Card, Combatable, Rankable):
             "name": self.name,
             "cost": self.cost,
             "rarity": self.rarity,
-            "type": "TournamentCard",
+            "type": self.type,
             "attack": self.attack_power,
             "health": self.health,
         }

@@ -1,4 +1,5 @@
 import random
+from enum import Enum
 from ex0.Card import Card
 from ex0.CreatureCard import CreatureCard
 from ex1.SpellCard import SpellCard
@@ -6,17 +7,25 @@ from ex1.ArtifactCard import ArtifactCard
 from ex3.CardFactory import CardFactory
 
 
+class Rarity(Enum):
+    COMMON = "Common"
+    UNCOMMON = "Uncommon"
+    RARE = "Rare"
+    LEGENDARY = "Legendary"
+
+
 class FantasyCardFactory(CardFactory):
 
     CREATURES = {
-        "dragon": ("Fire Dragon", 5, "Legendary", 7, 5),
-        "goblin": ("Goblin Warrior", 2, "Common", 2, 1),
+        "dragon": ("Fire Dragon", 5, Rarity.LEGENDARY.value, 7, 5),
+        "goblin": ("Goblin Warrior", 2, Rarity.COMMON.value, 2, 1),
     }
     SPELLS = {
-        "fireball": ("Lightning Bolt", 3, "Rare", "damage"),
+        "fireball": ("Lightning Bolt", 3, Rarity.RARE.value, "damage"),
     }
     ARTIFACTS = {
-        "mana_ring": ("Mana Crystal", 2, "Uncommon", 3, "+1 mana per turn"),
+        "mana_ring": (
+            "Mana Crystal", 2, Rarity.UNCOMMON.value, 3, "+1 mana per turn"),
     }
 
     def create_creature(self, name_or_power: str | int | None = None) -> Card:

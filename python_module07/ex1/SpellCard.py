@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, CardType
 
 
 class SpellCard(Card):
@@ -11,7 +11,7 @@ class SpellCard(Card):
     ) -> None:
         super().__init__(name, cost, rarity)
         self.effect_type: str = effect_type
-        self.type: str = "Spell"
+        self.type: str = CardType.SPELL.value
         self.used: bool = False
 
     def play(self, game_state: dict) -> dict:

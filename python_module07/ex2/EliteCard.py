@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, CardType
 from ex2.Combatable import Combatable
 from ex2.Magical import Magical
 
@@ -18,7 +18,7 @@ class EliteCard(Card, Combatable, Magical):
         self.attack_power: int = attack_power
         self.health: int = health
         self.mana: int = mana
-        self.type: str = "Elite"
+        self.type: str = CardType.ELITE.value
 
     # Combatable (Abstract Interface)
     def attack(self, target) -> dict:
