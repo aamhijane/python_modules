@@ -1,4 +1,7 @@
 
+"""Higher-order = functions taking/returning other functions"""
+
+
 def spell_combiner(spell1: callable, spell2: callable) -> callable:
     def combine(target) -> tuple[str]:
         sp1 = spell1(target)

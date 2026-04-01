@@ -1,4 +1,7 @@
 
+"""Closure = inner function remembers outer variable (nonlocal)"""
+
+
 def mage_counter() -> callable:
     count = 0
 

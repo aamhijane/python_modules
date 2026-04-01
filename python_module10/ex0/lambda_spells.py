@@ -1,3 +1,6 @@
+
+"""Lambda = short anonymous function (map, filter, sorted)"""
+
 from typing import List, Dict, Union
 
 
